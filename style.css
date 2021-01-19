@@ -1,0 +1,15 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgb(234, 255, 234);
+}
+.jumbotron {
+  background-size: cover;
+  height: 300px;
+  margin-bottom: 10px;
+  /* border-radius: 0px 0px 60px 0px; */
+}
+.card {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 1px 1px 8px #a8a8a8;
+}
