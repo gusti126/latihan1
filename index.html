@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,500;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        class="jumbotron jumbotron-fluid"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1594290190172-11588d5cb20a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NzB8fGdpcmxmcmllbmR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+        "
+      ></div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6 text-center">
+            <div class="card mb-5 pt-2">
+              <p><strong class="text-success">40</strong> di coba</p>
+            </div>
+          </div>
+          <div class="col-6 text-center">
+            <div class="card mb-3 pt-2">
+              <p><strong class="text-success">40</strong> Layanan</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="card p-3">
+              <h6>
+                jodoh hanya tuhan yang tahu, <br />
+                {{ nama }} & {{ pasangan }}
+              </h6>
+              <h2 v-if="!mulai">HAVE FUN</h2>
+
+              <div v-show="mulai">
+                <h2 v-if="hasil">Cocok</h2>
+                <h2 v-else>Tidak Cocok</h2>
+                <transition>
+                  <p v-if="hasil">{{ pesanCocok[message].pesan }}</p>
+                  <p v-else>{{ pesanTidakCocok[message].pesan }}</p>
+                </transition>
+              </div>
+
+              <!-- <p v-for="cocok in pesanCocok">{{ cocok.pesan }}</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="bg-white py-3 mt-3">
+        <div class="container-fluid">
+          <form>
+            <div class="row mt-4">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="">Nama Anda</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="nama"
+                    placeholder="Your Name"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="">Nama Pasangan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    v-model="pasangan"
+                    placeholder="Nama Pasangan"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button
+                  v-on:click="cek"
+                  type="button"
+                  class="btn btn-success btn-block mb-5"
+                >
+                  Cek Kecocokan
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="vue/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: 1,
+          nama: "",
+          pasangan: "",
+          mulai: false,
+          hasil: false,
+          pesanCocok: [
+            {
+              id: 1,
+              pesan:
+                "Kami Melihat Banyak Kecocokan dari nama anda. sering adanya masalah bisa menambahkan kedewasaan.",
+            },
+            {
+              id: 2,
+              pesan:
+                "Saling Menghormati Pasangan adalah cara kalian untuk trus menjaga hubungan. Selagi punya batasan tak ada salah untuk di teruskan",
+            },
+            {
+              id: 3,
+              pesan:
+                "Kamu bukan orang yang pantang menyerah hanya kurang percaya diri tingkatkan lagi percaya diri mu, buat dia nyaman di sisi mu.",
+            },
+          ],
+          pesanTidakCocok: [
+            {
+              id: 1,
+              pesan:
+                "Tuhan menciptakan mahluknya berpasangan jangan ragu untuk meninggalkan yang tidak menghormati mu",
+            },
+            {
+              id: 2,
+              pesan: "banyak yang menyayangi mu meninggalkan satu tak apa",
+            },
+            {
+              id: 3,
+              pesan:
+                "entahlah apa yang membuatku untuk bilang tidak cocok. coba tenangkan diri ",
+            },
+          ],
+        },
+        methods: {
+          cek: function (e) {
+            this.mulai = true;
+            const pesanRandom = Math.round(
+              Math.random() * this.pesanCocok.length
+            );
+            let berdasarkan =
+              pesanRandom * this.nama.length + this.pasangan.length;
+            console.log("ini berdasarkan" + berdasarkan);
+            let berdasarkanM = berdasarkan % 2;
+            console.log("ini modulus " + berdasarkanM);
+
+            if (this.nama.length === this.pasangan.length) {
+              this.mulai = true;
+              this.hasil = true;
+              this.message = pesanRandom;
+              console.log(pesanRandom);
+            } else if (this.nama === "Chaca" && this.pasangan === "Gusti") {
+              this.mulai = true;
+              this.hasil = true;
+              this.message = pesanRandom;
+            } else if (this.nama === "chaca" && this.pasangan === "gusti") {
+              this.mulai = true;
+              this.hasil = true;
+              this.message = pesanRandom;
+              console.log(pesanRandom);
+            } else if (this.nama === "Chaca" && this.pasangan === "Ryas") {
+              this.mulai = true;
+              this.hasil = false;
+              this.message = pesanRandom;
+            } else if (this.nama === "chaca" && this.pasangan === "ryas") {
+              this.mulai = true;
+              this.hasil = false;
+              this.message = pesanRandom;
+            } else if (this.nama === "gusti" && this.pasangan === "chaca") {
+              this.mulai = true;
+              this.hasil = true;
+              this.message = pesanRandom;
+            } else if (this.nama === "lecita" && this.pasangan === "gusti") {
+              this.mulai = true;
+              this.hasil = false;
+              this.message = pesanRandom;
+            } else if (this.nama === "ryas" && this.pasangan === "chaca") {
+              this.mulai = true;
+              this.hasil = false;
+              this.message = pesanRandom;
+            } else if (berdasarkanM < 1) {
+              this.mulai = true;
+              this.hasil = false;
+            } else if (berdasarkanM > 0) {
+              this.mulai = true;
+              this.hasil = true;
+              this.message = pesanRandom;
+            }
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
